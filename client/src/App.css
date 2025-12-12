@@ -1,178 +1,419 @@
-:root {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
+/* ============= 全局布局 ============= */
 
 .app {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 24px;
+  min-height: 100vh;
+  padding: 32px 16px 40px;
+  background: radial-gradient(circle at top, #f5f7ff 0, #f3f4f6 45%, #eceff4 100%);
+  color: #111827;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
+
+/* 内容区域居中，不撑满整屏，看起来更“应用感” */
+.app > * {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============= 顶部栏 ============= */
 
 .topbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 12px;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
 }
+
+.topbar h1 {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* 可以根据需要改中文标题 */
+.topbar h1::first-letter {
+  color: #2563eb;
+}
+
+/* ============= 工具栏按钮 ============= */
 
 .toolbar {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-button {
-  border: 1px solid #ddd;
-  background: white;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  border-color: #aaa;
-}
-
-button.danger {
-  border-color: #f5c2c2;
-}
-
-button.ghost {
-  background: #f7f7f7;
-}
-
-.import-btn {
-  border: 1px dashed #ddd;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.msg {
-  margin: 12px 0;
-  padding: 8px 10px;
-  background: #f3f7ff;
-  border: 1px solid #d9e6ff;
-  border-radius: 8px;
-}
-
-.list {
-  margin-top: 16px;
-  display: grid;
-  gap: 10px;
-}
-
-.card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #eee;
-  padding: 12px 14px;
-  border-radius: 12px;
-}
-
-.card-left {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.star {
-  font-size: 20px;
-  line-height: 1;
-  border: none;
-  background: transparent;
-}
-
-.star.on {
-  transform: translateY(-1px);
-}
-
-.name {
-  font-weight: 600;
-}
-
-.sub {
-  display: flex;
-  gap: 6px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 4px;
-}
-
-.chip {
-  font-size: 12px;
-  border: 1px solid #eee;
-  padding: 2px 6px;
-  border-radius: 999px;
-}
-
-.empty {
-  text-align: center;
-  padding: 40px 0;
-  color: #888;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.08);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modal.show {
-  display: flex;
-}
-
-.modal-content {
-  width: min(820px, 96vw);
-  background: white;
-  border-radius: 14px;
-  border: 1px solid #eee;
-  padding: 18px;
-}
-
-.field {
-  display: grid;
-  gap: 6px;
-  margin: 10px 0;
-}
-
-input,
-select {
-  border: 1px solid #ddd;
-  padding: 8px 10px;
-  border-radius: 8px;
+  font-size: 14px;
 }
 
 .checkbox {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin: 6px 0 12px;
+  cursor: pointer;
+  user-select: none;
+  color: #4b5563;
+}
+
+/* 按钮基础样式：圆角胶囊 + 淡淡阴影 */
+button {
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  padding: 6px 16px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.16s ease-out;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+button:hover {
+  background: #f3f4ff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.18);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* 主要按钮（+ 新、Save）可以加重一点 */
+button.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+button.primary:hover {
+  background: #1d4ed8;
+}
+
+/* 危险按钮（删除） */
+button.danger {
+  border-color: #fecaca;
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+button.danger:hover {
+  border-color: #ef4444;
+  background: #fee2e2;
+}
+
+/* 透明按钮（Cancel） */
+button.ghost {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: #6b7280;
+}
+
+button.ghost:hover {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+/* 导入按钮用 label 伪装成按钮 */
+.import-btn {
+  border-radius: 999px;
+  border: 1px dashed #d1d5db;
+  padding: 6px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #374151;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: all 0.16s ease-out;
+}
+
+.import-btn:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+/* ============= 消息条 ============= */
+
+.msg {
+  margin: 16px auto 0;
+  max-width: 960px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #ecfdf3;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 13px;
+}
+
+/* ============= 联系人列表 ============= */
+
+.list {
+  margin-top: 18px;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 卡片外观：轻微阴影 + 卡片感 */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 星标按钮 */
+.star {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f3f4f6;
+  color: #9ca3af;
+  font-size: 18px;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.star:hover {
+  background: #fee2e2;
+  color: #f97316;
+}
+
+.star.on {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+/* 联系人姓名与摘要 */
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  border-radius: 999px;
+  background: #f3f4f6;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+/* 右侧操作区 */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 40px 0 16px;
+  font-size: 14px;
+}
+
+/* ============= 弹窗（新建/编辑联系人） ============= */
+
+/* 兼容 App.jsx 里可能出现的两种 class：.modal 或 .modal-backdrop */
+.modal,
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 64px 16px 32px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  transition: opacity 0.18s ease-out;
+}
+
+/* 打开状态 */
+.modal.show,
+.modal-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 弹窗内容 */
+.modal-content {
+  width: 100%;
+  max-width: 520px;
+  background: #f9fafb;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+  padding: 18px 20px 16px;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.modal-title h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* 表单字段 */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.field label {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.field input {
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  padding: 7px 9px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.16s ease-out, box-shadow 0.16s ease-out,
+    background-color 0.16s ease-out;
+}
+
+.field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+  background: #ffffff;
+}
+
+/* 书签复选框 */
+.modal-content .checkbox {
+  margin-bottom: 12px;
+}
+
+/* 联系方式模块 */
+.methods {
+  margin-top: 4px;
+  border-radius: 14px;
+  background: #f3f4f6;
+  padding: 10px 10px 8px;
 }
 
 .methods-head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
+.methods-head h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 每一行联系方式 */
 .method-row {
   display: grid;
-  grid-template-columns: 120px 1fr 160px 90px;
-  gap: 8px;
-  margin: 8px 0;
+  grid-template-columns: 120px minmax(0, 1.5fr) minmax(0, 1.3fr) auto;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
+.method-row select,
+.method-row input {
+  border-radius: 9px;
+  border: 1px solid #d1d5db;
+  padding: 6px 8px;
+  font-size: 13px;
+  outline: none;
+  background: #ffffff;
+}
+
+.method-row select:focus,
+.method-row input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.16);
+}
+
+.method-row button {
+  padding-inline: 10px;
+  font-size: 12px;
+}
+
+/* 弹窗底部按钮 */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 12px;
+}
+
+/* ============= 响应式调整 ============= */
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topbar h1 {
+    font-size: 26px;
+  }
+
+  .toolbar {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .card {
+    padding: 10px 12px;
+  }
+
+  .method-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal,
+  .modal-backdrop {
+    padding-top: 48px;
+  }
 }
