@@ -13,7 +13,8 @@
 ## 目录结构
 
 ```
-.\n├── client/              # 前端React应用\n│   ├── src/             # 前端源码\n│   │   ├── api.js       # API接口封装\n│   │   ├── App.jsx      # 主应用组件\n│   │   └── methodTypes.js # 联系方式类型定义\n│   └── package.json     # 前端依赖配置\n│\n└── server/              # 后端Express应用\n    ├── prisma/          # Prisma ORM配置\n    │   └── schema.prisma # 数据库模型定义\n    ├── src/             # 后端源码\n    │   ├── db.js        # 数据库连接配置\n    │   └── index.js     # 后端入口和API路由\n    └── package.json     # 后端依赖配置\n```
+.\n├── client/              # 前端React应用\n│   ├── src/             # 前端源码\n│   │   ├── api.js       # API接口封装\n│   │   ├── App.jsx      # 主应用组件\n│   │   └── methodTypes.js # 联系方式类型定义\n│   └── package.json     # 前端依赖配置\n│\n└── server/              # 后端Express应用\n    ├── prisma/          # Prisma ORM配置\n    │   └── schema.prisma # 数据库模型定义\n    ├── src/             # 后端源码\n    │   ├── db.js        # 数据库连接配置\n    │   └── index.js     # 后端入口和API路由\n    └── package.json     # 后端依赖配置\n
+```
 
 ## 技术栈
 
